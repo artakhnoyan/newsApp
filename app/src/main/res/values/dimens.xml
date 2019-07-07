@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="news_item_height">96dp</dimen>
+	<dimen name="news_image_size">40dp</dimen>
+	<dimen name="news_image_margin">16dp</dimen>
+	<dimen name="news_text_margin">32dp</dimen>
+</resources>

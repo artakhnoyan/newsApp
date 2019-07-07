@@ -1,0 +1,63 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+	>
+
+	<data>
+
+		<import type="android.view.View"/>
+
+		<variable
+			name="newsViewModel"
+			type="com.yantur.newsapp.presenter.news.NewsViewModel"/>
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rv_news"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<ProgressBar
+			android:id="@+id/progress_bar"
+			android:layout_width="50dp"
+			android:layout_height="50dp"
+			android:visibility="@{newsViewModel.loading ? View.VISIBLE : View.GONE }"
+			app:layout_constraintBottom_toBottomOf="@+id/rv_news"
+			app:layout_constraintEnd_toEndOf="@+id/rv_news"
+			app:layout_constraintStart_toStartOf="@+id/rv_news"
+			app:layout_constraintTop_toTopOf="@+id/rv_news"/>
+
+
+		<TextView
+			android:id="@+id/err_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/no_internet_or_something_went_wrong"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"/>
+
+		<Button
+			android:id="@+id/btn_refresh"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:onClick="@{() -> newsViewModel.refresh()}"
+			android:text="@string/refresh"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/err_title"/>
+
+		<androidx.constraintlayout.widget.Group
+			android:id="@+id/err_state"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="@{newsViewModel.error ? View.VISIBLE : View.GONE }"
+			app:constraint_referenced_ids="err_title,btn_refresh"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
